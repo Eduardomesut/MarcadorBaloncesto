@@ -1,0 +1,351 @@
+<!-- activity_score.xml -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondobasket">
+
+    <!-- Contador de puntos equipo local -->
+
+    <!-- Botón de +1 para equipo local -->
+
+    <!-- Contador de puntos equipo visitante -->
+
+    <TextView
+        android:id="@+id/localScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:text="0"
+        android:textColor="#CEC6C6"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toStartOf="@+id/timerText"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonMasUno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="+1"
+        app:layout_constraintEnd_toStartOf="@+id/buttonmenos1"
+        app:layout_constraintStart_toEndOf="@+id/buttonDosPuntos"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStopTimer"
+        tools:ignore="DuplicateClickableBoundsCheck" />
+
+    <!-- Botón de +1 para equipo visitante -->
+
+    <!-- Temporizador -->
+
+    <TextView
+        android:id="@+id/visitorScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="32dp"
+        android:text="0"
+        android:textColor="#CEC6C6"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toEndOf="@+id/timerText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonmenos1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="-1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonMasUno"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStopTimer" />
+
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="10:00"
+        android:textColor="#CEC6C6"
+        android:textSize="32sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Botones de control del temporizador -->
+
+    <Button
+        android:id="@+id/buttonStartTimer"
+        android:layout_width="101dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="96dp"
+        android:text="Iniciar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timerText" />
+
+    <Button
+        android:id="@+id/buttonStopTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Detener"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonStartTimer" />
+
+    <Button
+        android:id="@+id/buttonDosPuntos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="+2"
+        app:layout_constraintEnd_toStartOf="@+id/buttonMasUno"
+        app:layout_constraintStart_toEndOf="@+id/bottonTriple"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStopTimer" />
+
+    <Button
+        android:id="@+id/bottonTriple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="+3"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDosPuntos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStopTimer" />
+
+    <Button
+        android:id="@+id/AtacaLocal"
+        android:layout_width="168dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="32dp"
+        android:text="Ataque Local"
+        app:layout_constraintEnd_toStartOf="@+id/AtacaVisitante"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDosPuntos" />
+
+    <Button
+        android:id="@+id/AtacaVisitante"
+        android:layout_width="172dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="Ataque Visitante"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/AtacaLocal"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMasUno" />
+
+    <TextView
+        android:id="@+id/LocalText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="16dp"
+        android:background="#8BC34A"
+        android:text="Local"
+        android:textColor="#CEC6C6"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/timerText"
+        app:layout_constraintEnd_toStartOf="@+id/textVisitante"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textVisitante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="16dp"
+        android:text="Visitante"
+        android:textColor="#CEC6C6"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/timerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/LocalText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TextoCuarto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1ND"
+        android:textColor="#CEC6C6"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/timerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="219dp"
+        android:layout_marginBottom="177dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/bottonTriple"
+        app:layout_constraintEnd_toStartOf="@+id/imageView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pelota_de_baloncesto" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="96dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/imageView10"
+        app:layout_constraintStart_toEndOf="@+id/textFaltas"
+        app:layout_constraintTop_toBottomOf="@+id/textVisitante"
+        app:srcCompat="@drawable/pelota_de_baloncesto" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="48dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/imageView12"
+        app:layout_constraintStart_toEndOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/visitorScore"
+        app:srcCompat="@drawable/pelota_de_baloncesto" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="96dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/imageView13"
+        app:layout_constraintStart_toEndOf="@+id/imageView11"
+        app:layout_constraintTop_toBottomOf="@+id/textVisitante"
+        app:srcCompat="@drawable/pelota_de_baloncesto" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="9dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/textVisitante"
+        app:srcCompat="@drawable/pelota_de_baloncesto" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="48dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/imageView11"
+        app:layout_constraintStart_toEndOf="@+id/imageView9"
+        app:layout_constraintTop_toBottomOf="@+id/visitorScore"
+        app:srcCompat="@drawable/pelota_de_baloncesto" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="96dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/textFaltas"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toBottomOf="@+id/LocalText"
+        app:srcCompat="@drawable/pelota_de_baloncesto" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="177dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/bottonTriple"
+        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/LocalText"
+        app:srcCompat="@drawable/pelota_de_baloncesto" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="48dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/imageView7"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/localScore"
+        app:srcCompat="@drawable/pelota_de_baloncesto" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="97dp"
+        android:layout_marginBottom="177dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDosPuntos"
+        app:layout_constraintEnd_toStartOf="@+id/imageView8"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/LocalText"
+        app:srcCompat="@drawable/pelota_de_baloncesto" />
+
+    <TextView
+        android:id="@+id/textFaltas"
+        android:layout_width="90dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="7dp"
+        android:text="Faltas"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="27sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView9"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/timerText" />
+
+    <Button
+        android:id="@+id/buttonFaltaAtaque"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:text="Falta Ataque"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AtacaVisitante"
+        app:layout_constraintVertical_bias="0.08" />
+
+    <Button
+        android:id="@+id/buttonFaltaDefensa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Falta Defensa"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonFaltaAtaque"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AtacaLocal"
+        app:layout_constraintVertical_bias="0.094" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
