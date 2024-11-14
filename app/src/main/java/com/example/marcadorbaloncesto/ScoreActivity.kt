@@ -13,17 +13,17 @@ class ScoreActivity : AppCompatActivity() {
     private var localScore = 0
     private var visitorScore = 0
     private var timer: CountDownTimer? = null
-    private var timeLeft = 600000L
+    private var timeLeft = 600000L  // 5000L Prueba 5 segundos
     private var posessionLocal = true
     private var cuartoActual = 1
     private var faltasLocal = 0
     private var faltasVisitante = 0
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_score)
-
         val localScoreText: TextView = findViewById(R.id.localScore)
         val visitorScoreText: TextView = findViewById(R.id.visitorScore)
         val timerText: TextView = findViewById(R.id.timerText)
@@ -50,6 +50,11 @@ class ScoreActivity : AppCompatActivity() {
         val imageView10: ImageView = findViewById(R.id.imageView10)
         val buttonFaltasAtaque: Button = findViewById(R.id.buttonFaltaAtaque)
         val buttonFaltasDefensa: Button = findViewById(R.id.buttonFaltaDefensa)
+        val textViewBonus1: TextView = findViewById(R.id.textViewBonus1)
+        val textViewBonus2: TextView = findViewById(R.id.textViewBonus2)
+
+
+
 
 
         buttonMasUno.setOnClickListener {
@@ -74,6 +79,8 @@ class ScoreActivity : AppCompatActivity() {
                     imageView7.visibility = ImageView.VISIBLE
                 }else if (faltasLocal == 5) {
                     imageView8.visibility = ImageView.VISIBLE
+                    textViewBonus1.visibility = TextView.VISIBLE
+
                 }
 
 
@@ -89,6 +96,7 @@ class ScoreActivity : AppCompatActivity() {
                     imageView12.visibility = ImageView.VISIBLE
                 }else if (faltasVisitante == 5) {
                     imageView13.visibility = ImageView.VISIBLE
+                    textViewBonus2.visibility = TextView.VISIBLE
                 }
 
             }
@@ -106,6 +114,7 @@ class ScoreActivity : AppCompatActivity() {
                     imageView12.visibility = ImageView.VISIBLE
                 }else if (faltasVisitante == 5) {
                     imageView13.visibility = ImageView.VISIBLE
+                    textViewBonus2.visibility = TextView.VISIBLE
                 }
             }else{
                 faltasLocal += 1
@@ -119,6 +128,7 @@ class ScoreActivity : AppCompatActivity() {
                     imageView7.visibility = ImageView.VISIBLE
                 }else if (faltasLocal == 5) {
                     imageView8.visibility = ImageView.VISIBLE
+                    textViewBonus1.visibility = TextView.VISIBLE
                 }
             }
         }
@@ -167,23 +177,73 @@ class ScoreActivity : AppCompatActivity() {
 
         buttonStartTimer.setOnClickListener { startTimer(timerText) }
         buttonStopTimer.setOnClickListener { stopTimer() }
+
+
     }
 
     private fun startTimer(timerText: TextView) {
         timer?.cancel()
-        timer = object : CountDownTimer(timeLeft, 1000) {
+        timer = object : CountDownTimer(timeLeft, 100) {
             override fun onTick(millisUntilFinished: Long) {
                 timeLeft = millisUntilFinished
                 val minutes = (timeLeft / 1000) / 60
                 val seconds = (timeLeft / 1000) % 60
-                timerText.text = String.format("%02d:%02d", minutes, seconds)
+                val tenths = (timeLeft % 1000) / 100
+                timerText.text = String.format("%02d:%02d.%d", minutes, seconds, tenths)
             }
 
             override fun onFinish() {
-                timerText.text = "00:00"
+                timerText.text = "00:00.0"
+                resetQuarter()
             }
         }.start()
     }
+
+    fun resetQuarter() {
+        val TextoCuarto: TextView = findViewById(R.id.TextoCuarto)
+        if (cuartoActual < 4) {
+            cuartoActual++
+
+            TextoCuarto.text = "${cuartoActual}ND"
+            timeLeft = 600000L
+            resetFaltas()
+            startTimer(findViewById(R.id.timerText))
+        } else {
+            TextoCuarto.text = "Final del partido"
+        }
+    }
+
+    fun resetFaltas() {
+        val imageView: ImageView = findViewById(R.id.imageView)
+        val imageView5: ImageView = findViewById(R.id.imageView5)
+        val imageView6: ImageView = findViewById(R.id.imageView6)
+        val imageView8: ImageView = findViewById(R.id.imageView8)
+        val imageView7: ImageView = findViewById(R.id.imageView7)
+        val imageView9: ImageView = findViewById(R.id.imageView9)
+        val imageView11: ImageView = findViewById(R.id.imageView11)
+        val imageView12: ImageView = findViewById(R.id.imageView12)
+        val imageView13: ImageView = findViewById(R.id.imageView13)
+        val imageView10: ImageView = findViewById(R.id.imageView10)
+        val textViewBonus1: TextView = findViewById(R.id.textViewBonus1)
+        val textViewBonus2: TextView = findViewById(R.id.textViewBonus2)
+        faltasLocal = 0
+        faltasVisitante = 0
+        textViewBonus1.visibility = TextView.INVISIBLE
+        textViewBonus2.visibility = TextView.INVISIBLE
+
+        imageView.visibility = ImageView.INVISIBLE
+        imageView5.visibility = ImageView.INVISIBLE
+        imageView6.visibility = ImageView.INVISIBLE
+        imageView7.visibility = ImageView.INVISIBLE
+        imageView8.visibility = ImageView.INVISIBLE
+        imageView9.visibility = ImageView.INVISIBLE
+        imageView10.visibility = ImageView.INVISIBLE
+        imageView11.visibility = ImageView.INVISIBLE
+        imageView12.visibility = ImageView.INVISIBLE
+        imageView13.visibility = ImageView.INVISIBLE
+    }
+
+
 
     private fun stopTimer() {
         timer?.cancel()
