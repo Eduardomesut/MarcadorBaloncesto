@@ -164,14 +164,14 @@ class ScoreActivity : AppCompatActivity() {
         }
         atacaLocal.setOnClickListener {
             posessionLocal = true
-            localText.setBackgroundColor(0xFFFFFF00.toInt())
+            localText.setBackgroundColor(0xff6750a4.toInt())
             visitanteText.setBackgroundColor(0x00000000)
         }
 
         atacaVisitante.setOnClickListener {
             posessionLocal = false
             localText.setBackgroundColor(0x00000000)
-            visitanteText.setBackgroundColor(0xFFFFFF00.toInt()) 
+            visitanteText.setBackgroundColor(0xff6750a4.toInt())
         }
 
 
