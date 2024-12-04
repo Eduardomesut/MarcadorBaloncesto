@@ -13,11 +13,13 @@ class ScoreActivity : AppCompatActivity() {
     private var localScore = 0
     private var visitorScore = 0
     private var timer: CountDownTimer? = null
-    private var timeLeft = 600000L  // 5000L Prueba 5 segundos
+    private var timeLeft = 5000L  // 600000L Prueba 5 segundos
     private var posessionLocal = true
     private var cuartoActual = 1
     private var faltasLocal = 0
     private var faltasVisitante = 0
+    private lateinit var dbHelper: ScoreDatabaseHelper
+
 
 
 
@@ -52,6 +54,12 @@ class ScoreActivity : AppCompatActivity() {
         val buttonFaltasDefensa: Button = findViewById(R.id.buttonFaltaDefensa)
         val textViewBonus1: TextView = findViewById(R.id.textViewBonus1)
         val textViewBonus2: TextView = findViewById(R.id.textViewBonus2)
+        dbHelper = ScoreDatabaseHelper(this)
+
+        val buttonReport: Button = findViewById(R.id.buttonReport)
+        buttonReport.setOnClickListener {
+            showReport()
+        }
 
 
 
@@ -201,17 +209,25 @@ class ScoreActivity : AppCompatActivity() {
 
     fun resetQuarter() {
         val TextoCuarto: TextView = findViewById(R.id.TextoCuarto)
+
+        // Guardar las puntuaciones del cuarto actual en la base de datos
+        if (cuartoActual in 1..4) {
+            dbHelper.saveScore(cuartoActual, localScore, visitorScore)
+        }
+
         if (cuartoActual < 4) {
             cuartoActual++
-
             TextoCuarto.text = "${cuartoActual}ND"
             timeLeft = 600000L
             resetFaltas()
+            localScore = 0
+            visitorScore = 0
             startTimer(findViewById(R.id.timerText))
         } else {
             TextoCuarto.text = "Final del partido"
         }
     }
+
 
     fun resetFaltas() {
         val imageView: ImageView = findViewById(R.id.imageView)
@@ -242,6 +258,23 @@ class ScoreActivity : AppCompatActivity() {
         imageView12.visibility = ImageView.INVISIBLE
         imageView13.visibility = ImageView.INVISIBLE
     }
+
+    private fun showReport() {
+        val scores = dbHelper.getScores()
+        val report = StringBuilder("Reporte de puntuaciones:\n\n")
+        for ((quarter, score) in scores) {
+            val (local, visitor) = score
+            report.append("Cuarto $quarter: Local $local - Visitante $visitor\n")
+        }
+
+        // Mostrar el reporte en un AlertDialog
+        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+        builder.setTitle("Reporte")
+        builder.setMessage(report.toString())
+        builder.setPositiveButton("Cerrar", null)
+        builder.show()
+    }
+
 
 
 
