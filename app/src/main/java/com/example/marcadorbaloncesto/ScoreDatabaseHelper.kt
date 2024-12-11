@@ -34,8 +34,17 @@ class ScoreDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
         onCreate(db)
     }
 
+
+    fun clearScores() {
+        val db = writableDatabase
+        db.delete(TABLE_NAME, null, null)
+        db.close()
+    }
+
+
     fun saveScore(quarter: Int, localScore: Int, visitorScore: Int) {
         val db = writableDatabase
+
         val values = ContentValues().apply {
             put(COLUMN_QUARTER, quarter)
             put(COLUMN_LOCAL_SCORE, localScore)

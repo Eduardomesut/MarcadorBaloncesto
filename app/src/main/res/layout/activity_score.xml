@@ -13,6 +13,21 @@
 
     <!-- Contador de puntos equipo visitante -->
 
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="86dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="43dp"
+        android:background="@drawable/score"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFaltaDefensa"
+        tools:ignore="SpeakableTextPresentCheck" />
+
     <TextView
         android:id="@+id/localScore"
         android:layout_width="wrap_content"
@@ -44,21 +59,6 @@
 
     <!-- Temporizador -->
 
-    <Button
-        android:id="@+id/buttonReport"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="135dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="152dp"
-        android:layout_marginBottom="43dp"
-        android:text="Ver Reporte"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFaltaAtaque" />
-
     <TextView
         android:id="@+id/visitorScore"
         android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
         android:layout_marginTop="128dp"
         android:layout_marginEnd="32dp"
         android:text="0"
-        android:textColor="#CEC6C6"
+        android:textColor="@color/white"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.421"
@@ -394,5 +394,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewBonus1"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="94dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFaltaAtaque"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

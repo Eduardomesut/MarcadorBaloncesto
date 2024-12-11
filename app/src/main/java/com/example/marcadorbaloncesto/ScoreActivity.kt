@@ -4,6 +4,7 @@ package com.example.marcadorbaloncesto
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +14,7 @@ class ScoreActivity : AppCompatActivity() {
     private var localScore = 0
     private var visitorScore = 0
     private var timer: CountDownTimer? = null
-    private var timeLeft = 5000L  // 600000L Prueba 5 segundos
+    private var timeLeft = 600000L  // 5000L Prueba 5 segundos
     private var posessionLocal = true
     private var cuartoActual = 1
     private var faltasLocal = 0
@@ -54,13 +55,20 @@ class ScoreActivity : AppCompatActivity() {
         val buttonFaltasDefensa: Button = findViewById(R.id.buttonFaltaDefensa)
         val textViewBonus1: TextView = findViewById(R.id.textViewBonus1)
         val textViewBonus2: TextView = findViewById(R.id.textViewBonus2)
+        val bottonPasarCuarto : ImageButton = findViewById(R.id.imageButton3)
+
         dbHelper = ScoreDatabaseHelper(this)
 
-        val buttonReport: Button = findViewById(R.id.buttonReport)
+        //dbHelper.clearScores()
+
+        val buttonReport: ImageButton = findViewById(R.id.imageButton2)
         buttonReport.setOnClickListener {
             showReport()
         }
 
+        bottonPasarCuarto.setOnClickListener {
+            resetQuarter()
+        }
 
 
 
@@ -210,6 +218,7 @@ class ScoreActivity : AppCompatActivity() {
     fun resetQuarter() {
         val TextoCuarto: TextView = findViewById(R.id.TextoCuarto)
 
+
         // Guardar las puntuaciones del cuarto actual en la base de datos
         if (cuartoActual in 1..4) {
             dbHelper.saveScore(cuartoActual, localScore, visitorScore)
@@ -220,11 +229,14 @@ class ScoreActivity : AppCompatActivity() {
             TextoCuarto.text = "${cuartoActual}ND"
             timeLeft = 600000L
             resetFaltas()
-            localScore = 0
-            visitorScore = 0
+
             startTimer(findViewById(R.id.timerText))
         } else {
             TextoCuarto.text = "Final del partido"
+            dbHelper.saveScore(5, localScore, visitorScore)
+            timer?.cancel()
+            timer = null
+
         }
     }
 
@@ -264,10 +276,15 @@ class ScoreActivity : AppCompatActivity() {
         val report = StringBuilder("Reporte de puntuaciones:\n\n")
         for ((quarter, score) in scores) {
             val (local, visitor) = score
+            if (quarter == 5) {
+                report.append("Final del partido: Local $local - Visitante $visitor\n")
+                continue
+            }
             report.append("Cuarto $quarter: Local $local - Visitante $visitor\n")
+
         }
 
-        // Mostrar el reporte en un AlertDialog
+
         val builder = androidx.appcompat.app.AlertDialog.Builder(this)
         builder.setTitle("Reporte")
         builder.setMessage(report.toString())
