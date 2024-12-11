@@ -9,7 +9,7 @@ class ScoreDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
 
     companion object {
         private const val DATABASE_NAME = "scores.db"
-        private const val DATABASE_VERSION = 1
+        private const val DATABASE_VERSION = 2
         const val TABLE_NAME = "scores"
         const val COLUMN_ID = "id"
         const val COLUMN_QUARTER = "quarter"
@@ -38,7 +38,7 @@ class ScoreDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
     fun clearScores() {
         val db = writableDatabase
         db.delete(TABLE_NAME, null, null)
-        db.close()
+
     }
 
 
@@ -51,7 +51,7 @@ class ScoreDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
             put(COLUMN_VISITOR_SCORE, visitorScore)
         }
         db.insert(TABLE_NAME, null, values)
-        db.close()
+
     }
 
     fun getScores(): List<Pair<Int, Pair<Int, Int>>> {
@@ -73,7 +73,7 @@ class ScoreDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
             scores.add(quarter to (localScore to visitorScore))
         }
         cursor.close()
-        db.close()
+
         return scores
     }
 }

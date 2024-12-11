@@ -24,6 +24,7 @@ class ScoreActivity : AppCompatActivity() {
 
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_score)
@@ -59,7 +60,8 @@ class ScoreActivity : AppCompatActivity() {
 
         dbHelper = ScoreDatabaseHelper(this)
 
-        //dbHelper.clearScores()
+
+        // dbHelper.clearScores()
 
         val buttonReport: ImageButton = findViewById(R.id.imageButton2)
         buttonReport.setOnClickListener {
