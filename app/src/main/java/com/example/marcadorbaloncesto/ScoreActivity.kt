@@ -61,7 +61,7 @@ class ScoreActivity : AppCompatActivity() {
         dbHelper = ScoreDatabaseHelper(this)
 
 
-        // dbHelper.clearScores()
+        dbHelper.deleteDatabase()
 
         val buttonReport: ImageButton = findViewById(R.id.imageButton2)
         buttonReport.setOnClickListener {
@@ -235,6 +235,7 @@ class ScoreActivity : AppCompatActivity() {
             startTimer(findViewById(R.id.timerText))
         } else {
             TextoCuarto.text = "Final del partido"
+
             dbHelper.saveScore(5, localScore, visitorScore)
             timer?.cancel()
             timer = null

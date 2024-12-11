@@ -35,9 +35,11 @@ class ScoreDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
     }
 
 
-    fun clearScores() {
+    fun deleteDatabase() {
+
         val db = writableDatabase
-        db.delete(TABLE_NAME, null, null)
+        db.execSQL("DELETE FROM $TABLE_NAME")
+        db.close()
 
     }
 
