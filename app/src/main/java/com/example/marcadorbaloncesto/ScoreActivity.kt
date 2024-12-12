@@ -221,6 +221,7 @@ class ScoreActivity : AppCompatActivity() {
         val TextoCuarto: TextView = findViewById(R.id.TextoCuarto)
 
 
+
         // Guardar las puntuaciones del cuarto actual en la base de datos
         if (cuartoActual in 1..4) {
             dbHelper.saveScore(cuartoActual, localScore, visitorScore)
@@ -239,6 +240,14 @@ class ScoreActivity : AppCompatActivity() {
             dbHelper.saveScore(5, localScore, visitorScore)
             timer?.cancel()
             timer = null
+            timeLeft = 0L
+
+            resetFaltas()
+            var textoTiempo: TextView = findViewById(R.id.timerText)
+            textoTiempo.visibility = TextView.INVISIBLE
+
+
+
 
         }
     }
